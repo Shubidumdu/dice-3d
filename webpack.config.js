@@ -34,13 +34,16 @@ const config = {
         use: [stylesHandler, "css-loader", "sass-loader"],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif|glb|gltf|bin)$/i,
         type: "asset",
-      },
+      }
     ],
   },
   resolve: {
     extensions: [".tsx", ".ts", ".jsx", ".js", "..."],
+    alias: {
+      "three": path.resolve('./node_modules/three'),
+    }
   },
 };
 

@@ -16,6 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^18.15.0",
+    "@types/three": "^0.149.0",
     "@types/webpack": "^5.28.0",
     "@webpack-cli/generators": "^3.0.1",
     "css-loader": "^6.7.3",
@@ -31,5 +32,8 @@
     "webpack": "^5.76.1",
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.11.1"
+  },
+  "dependencies": {
+    "three": "^0.150.1"
   }
 }

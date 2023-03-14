@@ -7,5 +7,6 @@
     "allowJs": false,
     "strictNullChecks": true
   },
-  "files": ["src/index.ts"]
+  "files": ["src/index.ts"],
+  "include": ["*.ts"]
 }
