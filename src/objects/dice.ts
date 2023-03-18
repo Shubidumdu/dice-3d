@@ -1,13 +1,13 @@
 import * as CANNON from 'cannon-es';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const diceGltf: string = require('../dice.glb');
+const diceGltf: string = require('../assets/dice.glb');
 const gltfLoader = new GLTFLoader();
 
 const shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
-const body = new CANNON.Body({ mass: 8 });
+const body = new CANNON.Body({ mass: 800 });
 body.addShape(shape);
-body.position.set(0, 1, 0);
+body.position.set(0, 20, -2);
 
 export const loadDice = async () => {
   const dice = (await gltfLoader.loadAsync(diceGltf)).scene.children[0];

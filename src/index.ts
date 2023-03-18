@@ -21,7 +21,9 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-scene.add(camera);
+const helper = new THREE.CameraHelper(camera);
+
+scene.add(helper);
 scene.add(...lights);
 
 window.addEventListener('resize', () => {
