@@ -2,11 +2,13 @@
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
     "module": "CommonJS",
     "target": "ESNext",
     "allowJs": false,
     "strictNullChecks": true
   },
   "files": ["src/index.ts"],
-  "include": ["*.ts"]
+  "include": ["**/*.ts"]
 }
