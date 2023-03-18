@@ -4,6 +4,7 @@ import { loadDice } from './objects/dice';
 import { floor } from './objects/floor';
 import lights from './lights';
 import camera from './camera';
+import "./style/index.scss";
 
 // Scene ~ THREE
 const scene = new THREE.Scene();
@@ -23,9 +24,16 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 scene.add(camera);
 scene.add(...lights);
 
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
 const start = async () => {
   const dice = await loadDice();
   scene.add(dice, floor);
+  renderer.setSize(window.innerWidth, window.innerHeight);
   world.addBody(dice.userData.body);
   world.addBody(floor.userData.body);
 
