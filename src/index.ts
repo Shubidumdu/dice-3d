@@ -10,16 +10,14 @@ import { marker } from './objects/marker';
 import { movePlane } from './objects/movePlane';
 import { walls } from './objects/boundary';
 import { contactDiceAndFloor, contactDiceAndWall } from './materials';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-// Scene ~ THREE
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xff9500);
 
-// World - Cannon
 const world = new CANNON.World();
 world.gravity.set(0, -9.81, 0);
 
-// Renderer
 const canvas = document.querySelector('#c')!;
 const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
 
@@ -29,11 +27,13 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
 const helper = new THREE.CameraHelper(camera);
 
+const controls = new OrbitControls(camera, renderer.domElement);
+
 scene.add(helper);
 scene.add(...lights);
 
 window.addEventListener('resize', () => {
-  // camera.aspect = window.innerWidth / window.innerHeight;
+  camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
 });
@@ -55,6 +55,8 @@ const start = async () => {
       marker.userData.show();
       marker.userData.move(hitPoint);
 
+      controls.enabled = false;
+
       const contraint = addJointConstraint(hitPoint, dice.userData.body);
       world.addConstraint(contraint);
 
@@ -69,7 +71,6 @@ const start = async () => {
       return;
     }
 
-    // Project the mouse onto the movement plane
     const hitPoint = getHitPoint(
       event.clientX,
       event.clientY,
@@ -78,16 +79,15 @@ const start = async () => {
     );
 
     if (hitPoint) {
-      // Move marker mesh on the contact point
       marker.userData.show();
-
-      // Move the cannon constraint on the contact point
       marker.userData.move(hitPoint);
     }
   });
 
   window.addEventListener('pointerup', () => {
     isDragging = false;
+
+    controls.enabled = true;
 
     marker.userData.hide();
     const [contraint] = world.constraints;
@@ -101,6 +101,7 @@ const start = async () => {
     dice.userData.sync();
     floor.userData.sync();
     walls.forEach((wall) => wall.userData.sync());
+    controls.update();
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   });
