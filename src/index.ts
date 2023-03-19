@@ -22,6 +22,7 @@ world.gravity.set(0, -9.81, 0);
 // Renderer
 const canvas = document.querySelector('#c')!;
 const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
+
 renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;

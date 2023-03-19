@@ -13,7 +13,6 @@ body.position.set(0, 1, -2);
 export const loadDice = async () => {
   const dice = (await gltfLoader.loadAsync(diceGltf)).scene.children[0];
   dice.castShadow = true;
-  dice.receiveShadow = true;
   dice.userData = {
     body,
     sync: () => {
