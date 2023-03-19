@@ -25,11 +25,9 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-const helper = new THREE.CameraHelper(camera);
-
 const controls = new OrbitControls(camera, renderer.domElement);
 
-scene.add(helper);
+scene.add(camera);
 scene.add(...lights);
 
 window.addEventListener('resize', () => {
@@ -97,7 +95,7 @@ const start = async () => {
   });
 
   requestAnimationFrame(function animate(time: number) {
-    world.fixedStep(1 / 60, time / 1000);
+    world.fixedStep();
     dice.userData.sync();
     floor.userData.sync();
     walls.forEach((wall) => wall.userData.sync());

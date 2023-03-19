@@ -8,7 +8,11 @@ body.collisionFilterGroup = 0;
 body.collisionFilterMask = 0;
 
 const geometry = new THREE.SphereGeometry(0.2, 8, 8);
-const material = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+const material = new THREE.MeshLambertMaterial({
+  color: 0xff0000,
+  opacity: 0.5,
+  transparent: true,
+});
 const marker = new THREE.Mesh(geometry, material);
 marker.visible = false; // Hide it..
 marker.userData = {
