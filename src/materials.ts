@@ -8,8 +8,8 @@ export const contactDiceAndWall = new CANNON.ContactMaterial(
   diceMaterial,
   wallMaterial,
   {
-    friction: 0.1,
-    restitution: 0.4,
+    friction: 0.05,
+    restitution: 0.9,
   }
 );
 
