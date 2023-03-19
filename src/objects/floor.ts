@@ -1,10 +1,12 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
+import { floorMaterial } from '../materials';
 
 const floorShape = new CANNON.Plane();
-const body = new CANNON.Body({ mass: 0 });
+const body = new CANNON.Body({ mass: 0, material: floorMaterial });
 body.addShape(floorShape);
 body.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
+console.log(-Math.PI / 2)
 
 const geometry = new THREE.PlaneGeometry(20, 20, 1, 1);
 const material = new THREE.MeshLambertMaterial({ color: 0xff9500 });
