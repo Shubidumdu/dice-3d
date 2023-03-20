@@ -1,15 +1,7 @@
-# 🚀 Welcome to your new awesome project
+# Dice 3D
 
-This project has been created using **webpack-cli**, you can now run
+![Example](https://github.com/Shubidumdu/dice-3d/blob/main/example.gif?raw=true)
 
-```
-npm run build
-```
+## Description
 
-or
-
-```
-yarn build
-```
-
-to bundle your application
+Just grab and throw dice!
