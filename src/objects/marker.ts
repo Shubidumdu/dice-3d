@@ -14,7 +14,7 @@ const material = new THREE.MeshLambertMaterial({
   transparent: true,
 });
 const marker = new THREE.Mesh(geometry, material);
-marker.visible = false; // Hide it..
+marker.visible = false;
 marker.userData = {
   body,
   show: () => {

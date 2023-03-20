@@ -18,7 +18,7 @@ scene.background = new THREE.Color(0xff9500);
 const world = new CANNON.World();
 world.gravity.set(0, -9.81, 0);
 
-const canvas = document.querySelector('#c')!;
+const canvas = document.querySelector('#canvas')!;
 const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
 
 renderer.outputEncoding = THREE.sRGBEncoding;
