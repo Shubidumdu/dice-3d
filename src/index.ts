@@ -25,7 +25,7 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);;
 
 scene.add(camera);
 scene.add(...lights);
@@ -46,6 +46,7 @@ const start = async () => {
   walls.forEach((wall) => world.addBody(wall.userData.body));
   world.addContactMaterial(contactDiceAndWall);
   world.addContactMaterial(contactDiceAndFloor);
+  controls.target = new THREE.Vector3(0, 6, 0);
 
   window.addEventListener('pointerdown', (e) => {
     const hitPoint = getHitPoint(e.clientX, e.clientY, dice, camera);
@@ -95,7 +96,7 @@ const start = async () => {
   });
 
   requestAnimationFrame(function animate(time: number) {
-    world.fixedStep();
+    world.fixedStep(1 / 60, time / 1000);
     dice.userData.sync();
     floor.userData.sync();
     walls.forEach((wall) => wall.userData.sync());

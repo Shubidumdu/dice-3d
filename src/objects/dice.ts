@@ -2,11 +2,13 @@ import * as CANNON from 'cannon-es';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { diceMaterial } from '../materials';
 
+const DENSITY = 700;
+
 const diceGltf: string = require('../assets/dice.glb');
 const gltfLoader = new GLTFLoader();
 
 const shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
-const body = new CANNON.Body({ mass: 800, material: diceMaterial });
+const body = new CANNON.Body({ mass: DENSITY * shape.volume(), material: diceMaterial });
 body.addShape(shape);
 body.position.set(0, 1, -2);
 

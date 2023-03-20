@@ -31,10 +31,9 @@ const walls = [...new Array(5)].map((_, index) => {
   body.quaternion.setFromEuler(x1, y1, z1);
 
   const geometry = new THREE.PlaneGeometry(20, 20, 1, 1);
-  const material = new THREE.MeshMatcapMaterial({
-    color: 0xff9500,
-    opacity: 0.1,
-    transparent: true,
+  const material = new THREE.MeshStandardMaterial({
+    color: 0x006EB3,
+    transparent: false,
   });
   const wall = new THREE.Mesh(geometry, material);
   wall.receiveShadow = true;
