@@ -9,7 +9,7 @@ export const contactDiceAndWall = new CANNON.ContactMaterial(
   wallMaterial,
   {
     friction: 0.0,
-    restitution: 0.2,
+    restitution: 0.9,
   }
 );
 
@@ -18,6 +18,6 @@ export const contactDiceAndFloor = new CANNON.ContactMaterial(
   floorMaterial,
   {
     friction: 0.1,
-    restitution: 0.1,
+    restitution: 0.9,
   }
 );
