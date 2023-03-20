@@ -21,8 +21,13 @@ export const getHitPoint = (
   return hits.length > 0 ? hits[0].point : undefined;
 };
 
-export const addJointConstraint = (position: THREE.Vector3, body: CANNON.Body) => {
-  const vector = new CANNON.Vec3().copy(position as unknown as CANNON.Vec3).vsub(body.position);
+export const addJointConstraint = (
+  position: THREE.Vector3,
+  body: CANNON.Body
+) => {
+  const vector = new CANNON.Vec3()
+    .copy(position as unknown as CANNON.Vec3)
+    .vsub(body.position);
   const antiRotation = body.quaternion.inverse();
   const pivot = antiRotation.vmult(vector); // pivot is not in local body coordinates
 

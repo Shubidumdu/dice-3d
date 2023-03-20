@@ -7,8 +7,8 @@ import camera from './camera';
 import './style/index.scss';
 import { addJointConstraint, getHitPoint } from './action';
 import { marker } from './objects/marker';
-import { movePlane } from './objects/movePlane';
-import { walls } from './objects/boundary';
+import { moveBox } from './objects/moveBox';
+import { walls } from './objects/walls';
 import { contactDiceAndFloor, contactDiceAndWall } from './materials';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
@@ -25,7 +25,7 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
-const controls = new OrbitControls(camera, renderer.domElement);;
+const controls = new OrbitControls(camera, renderer.domElement);
 
 scene.add(camera);
 scene.add(...lights);
@@ -39,7 +39,9 @@ window.addEventListener('resize', () => {
 const start = async () => {
   let isDragging = false;
   const dice = await loadDice();
-  scene.add(dice, floor, marker, movePlane, ...walls);
+  document.getElementById('loading')!.remove();
+  document.getElementById('copyright')!.style.display = 'block';
+  scene.add(dice, floor, marker, moveBox, ...walls);
   renderer.setSize(window.innerWidth, window.innerHeight);
   world.addBody(dice.userData.body);
   world.addBody(floor.userData.body);
@@ -53,7 +55,6 @@ const start = async () => {
     if (hitPoint) {
       marker.userData.show();
       marker.userData.move(hitPoint);
-
       controls.enabled = false;
 
       const contraint = addJointConstraint(hitPoint, dice.userData.body);
@@ -70,12 +71,7 @@ const start = async () => {
       return;
     }
 
-    const hitPoint = getHitPoint(
-      event.clientX,
-      event.clientY,
-      movePlane,
-      camera
-    );
+    const hitPoint = getHitPoint(event.clientX, event.clientY, moveBox, camera);
 
     if (hitPoint) {
       marker.userData.show();
@@ -85,9 +81,7 @@ const start = async () => {
 
   window.addEventListener('pointerup', () => {
     isDragging = false;
-
     controls.enabled = true;
-
     marker.userData.hide();
     const [contraint] = world.constraints;
     if (contraint) {

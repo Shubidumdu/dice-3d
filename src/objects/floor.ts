@@ -8,7 +8,7 @@ body.addShape(floorShape);
 body.quaternion.setFromEuler(-Math.PI / 2, 0, 0);
 
 const geometry = new THREE.PlaneGeometry(20, 20, 1, 1);
-const material = new THREE.MeshStandardMaterial({ color: 0x006EB3 });
+const material = new THREE.MeshStandardMaterial({ color: 0x006eb3 });
 const floor = new THREE.Mesh(geometry, material);
 floor.receiveShadow = true;
 floor.userData = {

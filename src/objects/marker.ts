@@ -25,7 +25,7 @@ marker.userData = {
   },
   move: (point: THREE.Vector3) => {
     marker.position.copy(point);
-    body.position.copy(point as any);
+    body.position.copy(point as unknown as CANNON.Vec3);
   },
 };
 

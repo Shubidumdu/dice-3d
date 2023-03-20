@@ -1,9 +1,20 @@
 body {
   margin: 0;
   overflow: hidden;
+  background: #ff9500;
 }
 
-.copyright {
+#loading {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  color: black;
+  font-size: 32px;
+}
+
+#copyright {
+  display: none;
   position: fixed;
   bottom: 0;
   left: 0;
