@@ -11,6 +11,7 @@ import { moveBox } from './objects/moveBox';
 import { walls } from './objects/walls';
 import { contactDiceAndFloor, contactDiceAndWall } from './materials';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
+import { state } from './state';
 
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0xff9500);
@@ -37,7 +38,6 @@ window.addEventListener('resize', () => {
 });
 
 const start = async () => {
-  let isDragging = false;
   const dice = await loadDice();
   document.getElementById('loading')!.remove();
   document.getElementById('copyright')!.style.display = 'block';
@@ -61,13 +61,13 @@ const start = async () => {
       world.addConstraint(contraint);
 
       requestAnimationFrame(() => {
-        isDragging = true;
+        state.isDragging = true;
       });
     }
   });
 
   window.addEventListener('pointermove', (event) => {
-    if (!isDragging) {
+    if (!state.isDragging) {
       return;
     }
 
@@ -80,7 +80,7 @@ const start = async () => {
   });
 
   window.addEventListener('pointerup', () => {
-    isDragging = false;
+    state.isDragging = false;
     controls.enabled = true;
     marker.userData.hide();
     const [contraint] = world.constraints;

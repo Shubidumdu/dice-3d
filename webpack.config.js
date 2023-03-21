@@ -35,7 +35,7 @@ const config = {
         use: [stylesHandler, "css-loader", "sass-loader"],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif|glb|gltf|bin)$/i,
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif|glb|gltf|bin|wav)$/i,
         type: "asset",
       }
     ],
