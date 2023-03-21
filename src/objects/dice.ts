@@ -13,7 +13,7 @@ export type CollisionEvent = {
 const DENSITY = 700;
 
 const diceGltf: string = require('../assets/dice.glb');
-const soundEffect = new Audio(require('../assets/collision.wav'));
+const soundEffect = new Audio();
 const gltfLoader = new GLTFLoader();
 
 const shape = new CANNON.Box(new CANNON.Vec3(1, 1, 1));
@@ -34,6 +34,9 @@ body.addEventListener('collide', ({ contact }: CollisionEvent) => {
 });
 
 export const loadDice = async () => {
+  soundEffect.src = await fetch(require('../assets/collision.wav'))
+    .then((response) => response.blob())
+    .then((blob) => URL.createObjectURL(blob));
   const dice = (await gltfLoader.loadAsync(diceGltf)).scene.children[0];
   dice.castShadow = true;
   dice.userData = {
